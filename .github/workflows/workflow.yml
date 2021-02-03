@@ -4,7 +4,7 @@ on: [push]
 jobs:
   init:
     name: Fetch & build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - name: Checkout project
         uses: actions/checkout@v2
@@ -17,5 +17,5 @@ jobs:
 
       - name: Run Jasmine
         run: |
-          export DISPLAY=:0
+          # export DISPLAY=:0
           npx karma start --single-run
