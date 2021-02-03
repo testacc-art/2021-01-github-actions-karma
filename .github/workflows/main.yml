@@ -1,0 +1,19 @@
+name: check-js
+on: [push]
+
+jobs:
+  init:
+    name: Fetch & build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+
+      - run: npm install
+
+      - name: Run Jasmine
+        run: npx karma start --single-run
