@@ -17,5 +17,6 @@ jobs:
 
       - name: Run Jasmine
         run: |
-          # export DISPLAY=:0
+          export DISPLAY=:0
+          echo "DISPLAY is $DISPLAY"
           npx karma start --single-run
