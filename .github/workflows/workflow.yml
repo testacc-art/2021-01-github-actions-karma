@@ -1,0 +1,25 @@
+name: check-js
+on: [push]
+
+jobs:
+  init:
+    name: Fetch & build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+
+      - run: npm install
+
+      - name: Run Jasmine
+        run: |
+          # export DISPLAY=:0
+          # echo "DISPLAY is $DISPLAY"
+          # sudo apt-get install xvfb # or equivalent
+          export DISPLAY=':99.0'
+          Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+          npx karma start --single-run
